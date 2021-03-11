@@ -11,12 +11,6 @@
 
     <artifactId>employeeservFunctionalTests</artifactId>
     <dependencies>
-
-        <dependency>
-            <groupId>com.paypal.bfs.test</groupId>
-            <artifactId>employeeservImplementation</artifactId>
-            <version>${project.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
@@ -31,6 +25,18 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.5.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.paypal.bfs.test</groupId>
+            <artifactId>employeeservApi</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.paypal.bfs.test</groupId>
+            <artifactId>employeeservImplementation</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

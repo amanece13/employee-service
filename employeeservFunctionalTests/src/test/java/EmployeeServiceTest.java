@@ -1,12 +1,8 @@
-import com.paypal.bfs.test.employeeserv.api.EmployeeService;
 import com.paypal.bfs.test.employeeserv.api.model.Address;
 import com.paypal.bfs.test.employeeserv.api.model.Employee;
-import com.paypal.bfs.test.employeeserv.exception.DataFormatException;
-import com.paypal.bfs.test.employeeserv.model.AddressModel;
 import com.paypal.bfs.test.employeeserv.repository.AddressRepository;
 import com.paypal.bfs.test.employeeserv.repository.EmployeeRepository;
 import com.paypal.bfs.test.employeeserv.service.EmployeeServiceImpl;
-import com.paypal.bfs.test.employeeserv.util.ModelUtil;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EmployeeServiceTest {
@@ -56,8 +53,13 @@ public class EmployeeServiceTest {
         address.setCountry("ahjvhbvhvbrhj");
 
         employee.setAddress(address);
+        Employee created = null;
+        try{
+            created = employeeService.createEmployee(employee);
 
-        Employee created = employeeService.createEmployee(employee);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
         Assert.assertNotNull(created);
 
     }
@@ -65,7 +67,7 @@ public class EmployeeServiceTest {
     @Test
     public void checkEmployeeCreationFailure(){
         Employee employee = new Employee();
-        employee.setId(2);
+        employee.setId(3);
         employee.setFirstName("");
         employee.setLastName("");
         employee.setDob("12-12-12");
@@ -82,7 +84,7 @@ public class EmployeeServiceTest {
         Employee created = null;
         try{
             created = employeeService.createEmployee(employee);
-        }catch (DataFormatException e){
+        }catch (Exception e){
             System.out.println(e.getMessage());
         }
         Assert.assertNull(created);
